@@ -1,0 +1,70 @@
+function addNumber(n) {
+  return function(x) {
+    return n + x;
+  }
+}
+
+----------------------------------
+function searchArray(array, value) {
+  if (array.length === 0) {
+    return false;
+  }
+  if (array[0] === value) {
+    return true;
+  }
+  return searchArray(array.slice(1), value);
+}
+
+------------------------------------------
+function addParagraph(text) {
+  const newParagraph = document.createElement('p');
+  newParagraph.textContent = text;
+  document.body.appendChild(newParagraph);
+}
+-----------------------------------------
+function addListItem(text) {
+  const newListItem = document.createElement('li');
+  newListItem.textContent = text;
+  const list = document.querySelector('ul');
+  list.appendChild(newListItem);
+}
+
+------------------------------------------
+function changeBackgroundColor(element, color) {
+  element.style.backgroundColor = color;
+}
+------------------------------------
+function saveObjectToLocalStorage(key, object) {
+  localStorage.setItem(key, JSON.stringify(object));
+}
+
+const myObject = { foo: 'bar', baz: 42 };
+saveObjectToLocalStorage('my-object', myObject);
+
+-------------------------------------
+function getObjectFromLocalStorage(key) {
+  const objectString = localStorage.getItem(key);
+  return JSON.parse(objectString);
+}
+const myObject = getObjectFromLocalStorage('my-object');
+console.log(myObject);
+-----------------------------------------------------
+function getObjectFromLocalStorage(key) {
+  const objectString = localStorage.getItem(key);
+  return JSON.parse(objectString);
+}
+--------------------------------------------
+function saveObjectPropertiesToLocalStorage(object) {
+  // Save each property to localStorage
+  for (const [key, value] of Object.entries(object)) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  // Retrieve properties from localStorage and return as new object
+  const newObject = {};
+  for (const key of Object.keys(object)) {
+    const valueString = localStorage.getItem(key);
+    newObject[key] = JSON.parse(valueString);
+  }
+  return newObject;
+}
